@@ -1,0 +1,55 @@
+# Network type for training
+NETWORK: "DRAEM"
+
+# Model paremeters
+GENERATOR:
+  NAME: "draem"
+  CHECKPOINT: null
+  IN_CHANNEL: 3
+  OUT_CHANNEL: 3
+  NUM_CHANNELS: [32, 64, 128, 256]
+  LATENT_CHANNEL: 4
+  NUM_RES_BLOCKS: 1
+  NORM: "batch"
+  NUM_GROUPS: null
+  DROPOUT: 0.0
+  DROPOUT_INPUT: 0.0
+  ATTENTION_LEVELS: [False, False, False, False]
+  FINAL_ATTENTION: False
+
+# Pseudo Anomaly parameters
+PSEUDO_ANOMALY:
+  MASKING: 
+    METHOD: "perlin"
+    MAX_PATCH: 20
+    RATIO: [0.02,0.5]
+  ANOMALY: 
+    METHOD: "dtd"
+  BLENDING: 
+    METHOD: "alpha"
+  AUGMENT:
+    ELASTIC: 0.0
+    HFLIP: 0.0
+    VFLIP: 0.0
+    CJITT: 0.4
+    GAUSS: 0.0
+    DROP: 0.0
+    ROT: 0.0
+    ERASE: 0.0
+    SOLARIZE: 0.4
+    POSTERIZE: 0.4
+    EQUALIZE: 0.4
+    CONTRAST: 0.4
+    SHARPNESS: 0.4
+
+# Optimization parameters
+OPTIMIZER_G:
+  NAME: "Adam"
+  LR: 1.0E-3
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+  BETAS: [0.5, 0.999]
+
+# Saving parameters
+
+OUTPUT: "output/default/draem"

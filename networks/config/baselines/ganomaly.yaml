@@ -1,0 +1,69 @@
+# Network type for training
+NETWORK: "GANomaly"
+
+# Model parameters
+GENERATOR:
+  NAME: "ganomaly"
+  CHECKPOINT: null
+  IN_CHANNEL: 3
+  OUT_CHANNEL: 3
+  NUM_CHANNELS: [32, 64, 128, 256]
+  LATENT_CHANNEL: 4
+  NUM_RES_BLOCKS: 1
+  NORM: "batch"
+  NUM_GROUPS: null
+  DROPOUT: 0.0
+  DROPOUT_INPUT: 0.0
+  ATTENTION_LEVELS: [False, False, False, False]
+  FINAL_ATTENTION: False
+
+CRITIC:
+  NAME: "discriminator"
+  NORM: "batch"
+  NUM_GROUPS: null
+  PATCH: False
+  IN_SHAPE: [3,256,256]
+  NUM_CHANNELS: [32,64,64,128,128,256,256]
+  DROPOUT: 0.0
+  DROPOUT_INPUT: 0.0
+  N_CRITIC: 1
+
+# Optimization parameters
+OPTIMIZER_G:
+  NAME: "Adam"
+  LR: 1.0E-3
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+  BETAS: [0.5, 0.999]
+
+OPTIMIZER_C:
+  NAME: "Adam"
+  LR: 1.0E-3
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+  BETAS: [0.5, 0.999]
+
+# Loss parameters
+
+LOSS_REC: 
+  NAME: ["MAE"]
+  WEIGHTS: [5.0]
+  REDUCTION: "mean"
+  
+LOSS_ADV:
+  WEIGHT: 1.0
+  REDUCTION: "mean"
+  LAYER: -1
+
+LOSS_ENC:
+  WEIGHT: 1.0
+  REDUCTION: "mean"
+
+LOSS_CRITIC:
+  NAME: ["BinaryAdversarial"]
+  WEIGHTS: [1.0]
+  REDUCTION: "mean"
+
+# Saving parameters
+
+OUTPUT: "output/default/siamae"
