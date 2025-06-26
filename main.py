@@ -1,9 +1,9 @@
 import argparse
 
 import numpy as np
-import networks.utils.functionnal as utils
-from networks.config.config import load_cfg
-from networks.engine import build_model
+import src.utils.functionnal as utils
+from src.config.config import load_cfg
+from src.engine import build_model
 from trainer import Trainer
 import os 
 

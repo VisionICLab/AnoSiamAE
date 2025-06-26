@@ -1,0 +1,73 @@
+# Network type for training
+NETWORK: "SiamAE"
+
+# Model paremeters
+GENERATOR:
+  NAME: "siamese_autoencoder"
+  CHECKPOINT: null
+  IN_CHANNEL: 3
+  OUT_CHANNEL: 3
+  NUM_CHANNELS: [32, 64, 128, 256]
+  LATENT_CHANNEL: 4
+  HIDDEN_CHANNEL: 256
+  NUM_RES_BLOCKS: 1
+  NORM: "batch"
+  NUM_GROUPS: null
+  DROPOUT: 0.0
+  DROPOUT_INPUT: 0.0
+  ATTENTION_LEVELS: [False, False, False, False]
+  FINAL_ATTENTION: False
+
+# Pseudo Anomaly parameters
+PSEUDO_ANOMALY:
+  MASKING: 
+    METHOD: "rectangle"
+    MAX_PATCH: 20
+    RATIO: [0.02,0.5]
+  ANOMALY: 
+    METHOD: "batch"
+  BLENDING: 
+    METHOD: "alpha"
+  AUGMENT:
+    ELASTIC: 0.0
+    HFLIP: 0.4
+    VFLIP: 0.4
+    CJITT: 0.8
+    GAUSS: 0.4
+    DROP: 0.3
+    ROT: 0.0
+    ERASE: 0.1
+    SOLARIZE: 0.0
+    POSTERIZE: 0.0
+    EQUALIZE: 0.0
+    CONTRAST: 0.0
+    SHARPNESS: 0.0
+  
+# Optimization parameters
+OPTIMIZER_G:
+  NAME: "Adam"
+  LR: 1.0E-3
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+  BETAS: [0.5, 0.999]
+
+# Anomaly score
+
+ANOMALY_SCORE:
+  NAME: ["MS_SSIM"]
+  WEIGHTS: [1.0]
+  LAYERS: [22]
+  REDUCTION: "none"
+
+# Loss parameters
+
+LOSS_REC: 
+  NAME: ["SSIM", "RelativePerceptualVGG"]
+  WEIGHTS: [0.5, 0.5]
+  LAYERS: [22]
+  REDUCTION: "mean"
+
+LOSS_SIM:
+  WEIGHT: 0.5
+
+OUTPUT: "output/default/siamae"

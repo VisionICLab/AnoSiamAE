@@ -1,10 +1,10 @@
 import os
 import torch
 import json
-from networks.data.build import build_dataloader
+from src.data.build import build_dataloader
 
-from networks.config.config import save_cfg
-from networks.engine.base import _BaseModel
+from src.config.config import save_cfg
+from src.engine.base import _BaseModel
 
 
 class Trainer():

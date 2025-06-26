@@ -1,0 +1,45 @@
+# Network type for training
+NETWORK: "DAE"
+
+# Model paremeters
+GENERATOR:
+  NAME: "autoencoder"
+  CHECKPOINT: null
+  IN_CHANNEL: 3
+  OUT_CHANNEL: 3
+  NUM_CHANNELS: [32, 64, 128, 256]
+  LATENT_CHANNEL: 4
+  NUM_RES_BLOCKS: 1
+  NORM: "batch"
+  NUM_GROUPS: null
+  DROPOUT: 0.0
+  DROPOUT_INPUT: 0.0
+  ATTENTION_LEVELS: [False, False, False, False]
+  FINAL_ATTENTION: False
+  NOISE_FACTOR: 0.5
+
+# Optimization parameters
+OPTIMIZER_G:
+  NAME: "Adam"
+  LR: 1.0E-3
+  WEIGHT_DECAY: 0.0
+  MOMENTUM: 0.0
+  BETAS: [0.5, 0.999]
+
+
+# Anomaly score
+ANOMALY_SCORE:
+  NAME: ["MAE"]
+  WEIGHTS: [1.0]
+  REDUCTION: "none"
+  
+# Loss parameters
+
+LOSS_REC: 
+  NAME: ["MAE"]
+  WEIGHTS: [1.0]
+  REDUCTION: "mean"
+
+# Saving parameters
+
+OUTPUT: "output/default/dae"
