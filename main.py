@@ -40,8 +40,6 @@ if __name__=="__main__":
     model_parameters = filter(lambda p: p.requires_grad, model.generator.parameters())
     params = sum([np.prod(p.size()) for p in model_parameters])
     print("Number of trainable parameters: ", params)
-    grp = "Ablation_sim_weight"
-    prj = "Scientific Report"
 
     t = Trainer(model, cfg, test_only=args.test_only)
     t.run()
