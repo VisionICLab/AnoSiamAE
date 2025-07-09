@@ -17,9 +17,12 @@ class customResBlock(nn.Module):
         elif norm == "group":
             self.norm1 = nn.GroupNorm(num_groups=norm_num_groups, num_channels=in_channels)
             self.norm2 = nn.GroupNorm(num_groups=norm_num_groups, num_channels=out_channels)
-        elif norm == "layer":
+        elif norm == "instance":
             self.norm1 = nn.GroupNorm(num_groups=in_channels, num_channels=in_channels)
             self.norm2 = nn.GroupNorm(num_groups=out_channels, num_channels=out_channels)
+        elif norm == "layer":
+            self.norm1 = nn.GroupNorm(num_groups=1, num_channels=in_channels)
+            self.norm2 = nn.GroupNorm(num_groups=1, num_channels=out_channels)
         else:
             self.norm1=nn.Identity()
             self.norm2=nn.Identity()

@@ -57,8 +57,10 @@ class Encoder(nn.Module):
             blocks.append(nn.BatchNorm2d(output_channel))
         elif norm=="group":
             blocks.append(nn.GroupNorm(num_groups=norm_num_groups, num_channels=output_channel))
-        elif norm=="layer":
+        elif norm=="instance":
             blocks.append(nn.GroupNorm(num_groups=output_channel, num_channels=output_channel))
+        elif norm=="layer":
+            blocks.append(nn.GroupNorm(num_groups=1, num_channels=output_channel))
         blocks.append(nn.Conv2d(output_channel, out_channels, 3,1,1))
         self.blocks = nn.ModuleList(blocks)
 

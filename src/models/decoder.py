@@ -56,8 +56,10 @@ class Decoder(nn.Module):
             blocks.append(nn.BatchNorm2d(block_out_ch))
         elif norm=="group":
             blocks.append(nn.GroupNorm(num_groups=norm_num_groups, num_channels=block_out_ch))
-        elif norm=="layer":
+        elif norm=="instance":
             blocks.append(nn.GroupNorm(num_groups=block_out_ch, num_channels=block_out_ch))
+        elif norm=="layer":
+            blocks.append(nn.GroupNorm(num_groups=1, num_channels=block_out_ch))
         blocks.append(nn.Conv2d(block_out_ch, out_channels, kernel_size=3, stride=1, padding=1))
         self.blocks = nn.ModuleList(blocks)
 
