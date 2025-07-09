@@ -5,7 +5,6 @@ from typing import *
 import torchvision
 import piqa
 import torch
-from src.utils.constant import VGG19_WEIGHT_PATH
 
 class LPIPSLoss(nn.Module):
     def __init__(self, device, net_type="vgg", reduction="mean"):
@@ -96,7 +95,7 @@ class RelativePerceptualVGGLoss(nn.Module):
     def __init__(self, device="cuda", epsilon: float = 1e-10, reduction: str = 'mean',targets: list = [22],norm: str = "l1"):
         super().__init__()
 
-        self.mean_var_dict = torch.load(VGG19_WEIGHT_PATH, weights_only=False)
+        self.mean_var_dict = torch.load("src/loss/vgg19_ILSVRC2012_object_detection_mean_var.pt", weights_only=False)
         # ImageNet normalization
         self.normalize = ImageNetNorm()
 
