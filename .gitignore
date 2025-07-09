@@ -1,5 +1,4 @@
 # Custom gitignore
-*.pt
 *.pth
 *.png
 output/
