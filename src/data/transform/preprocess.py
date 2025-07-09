@@ -60,7 +60,7 @@ class Preprocessor(nn.Module):
         grey = tf.Resize(self.img_size, interpolation=0, antialias=True)(grey)
 
         # Binarize
-        mask = self.median((grey>0.06).int())
+        mask = self.median((grey>0.05).int())
         contours, _ = cv.findContours(mask.permute(1,2,0).numpy().astype(np.uint8)*255, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
         max_area=0
         best_ct = contours[0]
