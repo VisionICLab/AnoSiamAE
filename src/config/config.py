@@ -12,7 +12,7 @@ _C.SYSTEM.SEED = 42
 
 # Data parameters
 _C.DATA = CN()
-_C.DATA.NAME = "lightx"
+_C.DATA.NAME = "rfmid"
 _C.DATA.VAL_NORM_RATIO = 0.2
 _C.DATA.BATCH_SIZE = 16
 _C.DATA.EPOCHS = 150
