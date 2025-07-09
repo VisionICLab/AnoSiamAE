@@ -4,24 +4,24 @@ import json
 from src.data.build import build_dataloader
 
 from src.config.config import save_cfg
-from src.engine.base import _BaseModel
+from src.engine.base import _BaseEngine
 
 
 class Trainer():
-    def __init__(self, model:_BaseModel, cfg:dict, device:str = "cuda", test_only:bool= False):
+    def __init__(self, engine:_BaseEngine, cfg:dict, device:str = "cuda", test_only:bool= False):
         # Configuration parameters 
         self.cfg = cfg
         self.device = device
         self.seed = self.cfg["SYSTEM"]["SEED"]
         self.test_only = test_only
-        self.model = model
+        self.engine = engine
 
         self.dataloader = build_dataloader(cfg)
         
         # Optimization configuration
         self.batch_size = self.cfg["DATA"]["BATCH_SIZE"]
         self.epochs = self.cfg["DATA"]["EPOCHS"]
-        self.start_epoch = self.model.start_epoch
+        self.start_epoch = self.engine.start_epoch
 
         # Saving configuration
         self.model_output = os.path.join(self.cfg["OUTPUT"],"model")
@@ -56,7 +56,7 @@ class Trainer():
         for epoch in range(self.start_epoch, self.epochs):
 
             # One epoch training
-            train_dict, save_dict = self.model.train_model(epoch=epoch, 
+            train_dict, save_dict = self.engine.train_model(epoch=epoch, 
                                                            train_data=self.dataloader.train_dataloader(), 
                                                            output_dir=self.train_output, 
                                                            visualization = True, 
@@ -70,7 +70,7 @@ class Trainer():
 
             # One epoch validation
             if epoch==self.start_epoch or epoch%self.cfg["EVALUATION"]["VAL_FRQ"] ==0 or epoch==self.epochs-1:
-                val_dict = self.model.eval_model(epoch=epoch, 
+                val_dict = self.engine.eval_model(epoch=epoch, 
                                                  val_data=self.dataloader.val_dataloader(), 
                                                  Test=False,
                                                  output_dir=self.val_output)
@@ -86,7 +86,7 @@ class Trainer():
     def test(self):
         # One epoch testing
         print("Beginning of the testing process...")
-        test_dict = self.model.eval_model(epoch=self.epochs, 
+        test_dict = self.engine.eval_model(epoch=self.epochs, 
                                           val_data=self.dataloader.test_dataloader(), 
                                           Test=True,
                                           output_dir=self.val_output)

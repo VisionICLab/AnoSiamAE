@@ -3,7 +3,7 @@ import argparse
 import numpy as np
 import src.utils.functionnal as utils
 from src.config.config import load_cfg
-from src.engine import build_model
+from src.engine import build_engine
 from trainer import Trainer
 import os 
 
@@ -36,10 +36,10 @@ if __name__=="__main__":
     cfg["DATA"]["NAME"] = args.data
     cfg["DATA"]["BATCH_SIZE"] = args.batch_size
 
-    model = build_model(cfg, device=args.device, ckpt_path=ckpt_path)
-    model_parameters = filter(lambda p: p.requires_grad, model.generator.parameters())
+    engine = build_engine(cfg, device=args.device, ckpt_path=ckpt_path)
+    model_parameters = filter(lambda p: p.requires_grad, engine.generator.parameters())
     params = sum([np.prod(p.size()) for p in model_parameters])
     print("Number of trainable parameters: ", params)
 
-    t = Trainer(model, cfg, test_only=args.test_only)
+    t = Trainer(engine, cfg, test_only=args.test_only)
     t.run()

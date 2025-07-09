@@ -7,11 +7,11 @@ import src.utils.functionnal as utils
 import src.loss.manager as loss
 from src.loss.regularizer import KLLoss
 from src.models.build import build_arch
-from .base import _BaseModel
+from .base import _BaseEngine
 from .build import MODEL_REGISTRY
 
 @MODEL_REGISTRY.register("VAE")
-class VAETrainer(_BaseModel):
+class VAETrainer(_BaseEngine):
     def __init__(self, cfg, device="cuda", ckpt_path=None):
         super().__init__(cfg, device)
         # Generator

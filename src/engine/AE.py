@@ -6,11 +6,11 @@ from torchvision.utils import save_image, make_grid
 import src.utils.functionnal as utils
 import src.loss.manager as loss
 from src.models.build import build_arch
-from .base import _BaseModel
+from .base import _BaseEngine
 from .build import MODEL_REGISTRY
 
 @MODEL_REGISTRY.register("AE")
-class AETrainer(_BaseModel):
+class AETrainer(_BaseEngine):
     def __init__(self, cfg, device="cuda", ckpt_path=None):
         super().__init__(cfg, device)
         # Generator

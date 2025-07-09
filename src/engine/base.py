@@ -8,7 +8,7 @@ import numpy as np
 from torchvision.utils import save_image, make_grid
 import os
 
-class _BaseModel(nn.Module):
+class _BaseEngine(nn.Module):
     """ Custom Base Pytorch module for Reconstruction-based anomaly detection models
     """
     def __init__(self, cfg: dict, device:str="cuda"):

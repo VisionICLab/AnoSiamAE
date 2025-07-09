@@ -1,4 +1,4 @@
-from .build import MODEL_REGISTRY, build_model
+from .build import MODEL_REGISTRY, build_engine
 from .AE import AETrainer
 from .SiamAE import SiamAETrainer
 from .VAE import VAETrainer

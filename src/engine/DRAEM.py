@@ -8,12 +8,12 @@ from src.loss.segmentation import  FocalLoss
 from src.loss.reconstruction import SSIMLoss, MSELoss
 
 from src.data.pseudo_anomaly.generator import PatchTransform
-from .base import _BaseModel
+from .base import _BaseEngine
 from .build import MODEL_REGISTRY
 from src.models.build import build_arch
 
 @MODEL_REGISTRY.register("DRAEM")
-class DRAEMTrainer(_BaseModel):
+class DRAEMTrainer(_BaseEngine):
     def __init__(self, cfg, device="cuda", ckpt_path=None):
         super().__init__(cfg, device)
         # Generator
