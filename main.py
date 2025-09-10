@@ -10,14 +10,14 @@ import os
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser('Training parameters')
-    parser.add_argument('--folder', default=None, type=str, help='Path to model foler')
+    parser.add_argument('--folder', default=None, type=str, help='Path to model folder')
     parser.add_argument('--cfg_path', default="config/cfg.yaml", type=str, help='Path to configuration file')
     parser.add_argument('--test_only',action='store_true', default=False, help='Skip training if True')
     parser.add_argument('--ckpt_path', default=None, type=str, help='Path to pretrained model')
     parser.add_argument('--device', type=str, default="cuda", help="cuda or cpu")
     parser.add_argument('--output', default=None, type=str, help='Overide cfg output saving directory')
     parser.add_argument('--data', default="rfmid", type=str, help='Dataset to be used')
-    parser.add_argument('--batch_size', default=8, type=int, help='Dataset to be used')
+    parser.add_argument('--batch_size', default=8, type=int, help='Batch size')
 
     args = parser.parse_args()
     if not args.folder is None:
