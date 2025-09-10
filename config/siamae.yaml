@@ -25,7 +25,7 @@ PSEUDO_ANOMALY:
     MAX_PATCH: 20
     RATIO: [0.02,0.5]
   ANOMALY: 
-    METHOD: "batch"
+    METHOD: "same"
   BLENDING: 
     METHOD: "alpha"
   AUGMENT:
