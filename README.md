@@ -100,3 +100,28 @@ python main.py --cfg_path /path/to/cfg.yaml --ckpt /path/to/checkpoint.pth --tes
 ```bash
 python main.py --folder /path/to/model/output/folder --test_only
 ```
+
+## Cite
+
+```
+@InProceedings{10.1007/978-3-032-10351-2_5,
+  author="Baumstimler, Philippe
+  and Gagn{\'e}, S{\'e}bastien
+  and Champagne, Mathieu
+  and Gagnon, Jean-Mathieu
+  and Playout, Cl{\'e}ment
+  and S{\'e}oud, Lama",
+  editor="Fang, Huihui
+  and Wang, Meng
+  and Li, Heng
+  and Chen, Hao
+  and Bogunovi{\'{c}}, Hrvoje
+  and Lee, Cecilia S.",
+  title="Anomaly Detection in Anterior Eye Segment Using Self-supervised Siamese Autoencoders",
+  booktitle="Ophthalmic Medical Image Analysis",
+  year="2026",
+  publisher="Springer Nature Switzerland",
+  address="Cham",
+  pages="43--53",
+}
+```
